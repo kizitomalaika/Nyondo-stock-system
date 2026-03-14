@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NyondoStock - Sales Registration</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            display: flex;
+            background-color: #f0f0f0;
+        }
+
+        /* sidebar  */
+        .sidebar {
+            width: 220px;
+            min-height: 100vh;
+            background-color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            padding: 20px 0;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .profile {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            border-bottom: 1px solid #ddd;
+            margin-bottom: 10px;
+        }
+
+        .avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background-color: #ccc;
+            margin-bottom: 10px;
+        }
+
+        .profile p {
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .profile span {
+            font-size: 12px;
+            color: #888;
+        }
+
+        .nav-item {
+            padding: 14px 20px;
+            font-size: 14px;
+            color: #333;
+            cursor: pointer;
+            border-left: 3px solid transparent;
+        }
+
+        .nav-item:hover {
+            background-color: #f5f5f5;
+            border-left: 3px solid #1a73e8;
+            color: #1a73e8;
+        }
+
+        .nav-item.active {
+            background-color: #e8f0fe;
+            border-left: 3px solid #1a73e8;
+            color: #1a73e8;
+            font-weight: bold;
+        }
+
+        /* main content  */
+        .main {
+            flex: 1;
+            display: flex;
+            justify-content: flex-start;
+            align-items: flex-start;
+            padding: 40px 20px;
+        }
+
+        /* cardform */
+        .form-card {
+            background-color: #ffffff;
+            border-radius: 8px;
+            padding: 30px;
+            width: 100%;
+            max-width: 650px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+        }
+
+        .form-card h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 20px;
+            color: #222;
+        }
+
+        .section-title {
+            text-align: center;
+            font-weight: bold;
+            font-size: 16px;
+            margin: 20px 0 12px;
+            color: #222;
+        }
+
+        /*  Rows using Flexbox */
+        .form-row {
+            display: flex;
+            flex-direction: row;
+            gap: 14px;
+            margin-bottom: 14px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
+
+        .form-group label {
+            font-size: 13px;
+            color: #444;
+            margin-bottom: 5px;
+        }
+
+        .form-group input,
+        .form-group select {
+            padding: 10px 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 13px;
+            background-color: #f9f9f9;
+            outline: none;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            border-color: #1a73e8;
+            background-color: #fff;
+        }
+
+        /*items section*/
+        .items-header {
+            display: flex;
+            flex-direction: row;
+            gap: 14px;
+            margin-bottom: 6px;
+        }
+
+        .items-header span {
+            flex: 1;
+            font-size: 12px;
+            color: #555;
+            font-weight: bold;
+        }
+
+        .item-row {
+            display: flex;
+            flex-direction: row;
+            gap: 14px;
+            margin-bottom: 10px;
+        }
+
+        .item-row input {
+            flex: 1;
+            padding: 10px 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 13px;
+            background-color: #f9f9f9;
+            outline: none;
+        }
+
+        .item-row input:focus {
+            border-color: #1a73e8;
+            background-color: #fff;
+        }
+
+        /* button */
+        .button-row {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            gap: 14px;
+            margin-top: 24px;
+        }
+
+        .btn-cancel {
+            flex: 1;
+            padding: 12px;
+            background-color: #ffffff;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            color: #333;
+        }
+
+        .btn-cancel:hover {
+            background-color: #f5f5f5;
+        }
+
+        .btn-submit {
+            flex: 1;
+            padding: 12px;
+            background-color: #1a73e8;
+            border: none;
+            border-radius: 4px;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            color: #ffffff;
+        }
+
+        .btn-submit:hover {
+            background-color: #1558b0;
+        }
+
+        /* divder*/
+        .divider {
+            border: none;
+            border-top: 1px solid #eee;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- side bar -->
+    <div class="sidebar">
+        <div class="profile">
+            <div class="avatar"></div>
+            <p>Your Full Name</p>
+            <span>Role in the system</span>
+        </div>
+        <div class="nav-item">Dashboard</div>
+        <div class="nav-item active">Sales Management</div>
+        <div class="nav-item">Supplier Management</div>
+        <div class="nav-item">Stock Management</div>
+        <div class="nav-item">Transport Management</div>
+    </div>
+
+    <!-- main content -->
+    <div class="main">
+        <div class="form-card">
+
+            <h2>Sales Registration</h2>
+            <form id="sales-form">
+                <!-- Sale date and Person -->
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="sale-date">Sale Date</label>
+                        <input type="date" id="sale-date" name="sale-date">
+                    </div>
+                    <div class="form-group">
+                        <label for="sales-person">Sales Person</label>
+                        <select id="sales-person" name="sales-person">
+                            <option value="">Select sales representative</option>
+                            <option value="rep1">Namiiro Angella</option>
+                            <option value="rep2">Okello Patrick</option>
+                            <option value="rep3">Awori Bridget desire</option>
+                        </select>
+                    </div>
+                </div>
+
+                <hr class="divider">
+
+                <!-- Customer Details -->
+                <div class="section-title">Customer Details</div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="cust-name">Name</label>
+                        <input type="text" id="cust-name" name="cust-name" placeholder="Enter full name">
+                    </div>
+                    <div class="form-group">
+                        <label for="cust-phone">Phone Number</label>
+                        <input type="tel" id="cust-phone" name="cust-phone" placeholder="Enter Phone Number"
+                            pattern="[0-9]{10}" maxlength="10" title="Please enter a valid phone number" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="cust-email">Email</label>
+                        <input type="email" id="cust-email" name="cust-email" placeholder="Enter email"
+                            title="Please enter a valid email address e.g. name@example.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="cust-type">Type</label>
+                        <select id="cust-type" name="cust-type">
+                            <option value="">Select customer Type</option>
+                            <option value="retail">Retail</option>
+                            <option value="wholesale">Wholesale</option>
+                            <option value="corporate">Corporate</option>
+                        </select>
+                    </div>
+                </div>
+
+                <hr class="divider">
+
+                <!-- Items -->
+                <div class="section-title">Items</div>
+
+                <div class="items-header">
+                    <span>Pdt Id</span>
+                    <span>Quantity</span>
+                    <span>Unit Price</span>
+                </div>
+
+                <div class="item-row">
+                    <input type="text" placeholder="Pdt ID">
+                    <input type="number" placeholder="Quantity">
+                    <input type="number" placeholder="Unit Price">
+                </div>
+
+                <div class="item-row">
+                    <input type="text" placeholder="Pdt ID">
+                    <input type="number" placeholder="Quantity">
+                    <input type="number" placeholder="Unit Price">
+                </div>
+
+                <div class="item-row">
+                    <input type="text" placeholder="Pdt ID">
+                    <input type="number" placeholder="Quantity">
+                    <input type="number" placeholder="Unit Price">
+                </div>
+
+                <!-- Buttons -->
+                <div class="button-row">
+                    <button class="btn-cancel" type="button">Cancel</button>
+                    <button class="btn-submit" type="submit">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</body>
+
+</html>
