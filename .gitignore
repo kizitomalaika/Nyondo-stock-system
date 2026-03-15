@@ -1,0 +1,17 @@
+# Virtual Environment
+venv/
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Pytest
+.pytest_cache/
+report.html
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# VS Code
+.vscode/
