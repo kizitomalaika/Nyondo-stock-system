@@ -59,6 +59,7 @@ jobs:
           git fetch origin
           git checkout staging
           git merge development --no-ff -m "pipeline merge development into staging"
+          git merge origin/development --allow-unrelated-histories --no-ff -m "pipeline merge development into staging"
           git push origin staging
 
   # ─ JOB 3 — TEST ON STAGING ─
@@ -111,7 +112,7 @@ jobs:
           git config user.name "GitHub Actions"
           git fetch origin
           git checkout main
-          git merge staging --no-ff -m "pipeline merge staging into main"
+          git merge origin/staging --allow-unrelated-histories --no-ff -m "pipeline merge staging into main"
           git push origin main
 
       - name: Deploy to GitHub Pages
