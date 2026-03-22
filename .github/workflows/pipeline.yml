@@ -56,10 +56,10 @@ jobs:
         run: |
           git config user.email "github-actions@github.com"
           git config user.name "GitHub Actions"
-          git fetch origin
-          git checkout staging
-          git merge origin/development --allow-unrelated-histories --no-ff -m "pipeline merge development into staging"
-          git push origin staging
+          git fetch --all
+          git checkout -B staging origin/staging
+          git merge origin/development --allow-unrelated-histories --no-ff -m "pipeline merge development into staging" -X ours
+          git push origin staging --force
 
   # ─ JOB 3 — TEST ON STAGING ─
   test-staging:
@@ -109,10 +109,10 @@ jobs:
         run: |
           git config user.email "github-actions@github.com"
           git config user.name "GitHub Actions"
-          git fetch origin
-          git checkout main
-          git merge origin/staging --allow-unrelated-histories --no-ff -m "pipeline merge staging into main"
-          git push origin main
+          git fetch --all
+          git checkout -B main origin/main
+          git merge origin/staging --allow-unrelated-histories --no-ff -m "pipeline merge staging into main" -X ours
+          git push origin main --force
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
