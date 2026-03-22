@@ -11,7 +11,7 @@ permissions:
   contents: write
 
 jobs:
-  #  JOB 1 — TEST ON DEVELOPMENT ─
+  #  JOB 1  TEST ON DEVELOPMENT
   test:
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/development'
